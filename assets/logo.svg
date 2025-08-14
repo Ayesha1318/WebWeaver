@@ -1,0 +1,15 @@
+<svg width="80" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+<title>WebWeaver Thread Brackets Logo</title>
+<defs>
+  <linearGradient id="ww-grad2" x1="0" y1="0" x2="200" y2="60" gradientUnits="userSpaceOnUse">
+    <stop offset="0.2" stop-color="#A640DD"/>
+    <stop offset="0.8" stop-color="#66A5EB"/>
+  </linearGradient>
+</defs>
+<!-- brackets -->
+<path d="M20 15 Q10 30 20 45" stroke="url(#ww-grad2)" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M180 15 Q190 30 180 45" stroke="url(#ww-grad2)" stroke-width="6" fill="none" stroke-linecap="round"/>
+<!-- woven thread swirl -->
+<path d="M50 30c15-18 35-18 50 0s35 18 50 0" fill="none" stroke="url(#ww-grad2)" stroke-width="6" stroke-linecap="round"/>
+<path d="M50 30c15 18 35 18 50 0s35-18 50 0" fill="none" stroke="url(#ww-grad2)" stroke-width="2" opacity="0.5"/>
+</svg>"
