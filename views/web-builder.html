@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebWeaver - Website Generator</title>
+  <link rel="stylesheet" href="webBuilder.css" />
+  <script src="https://kit.fontawesome.com/074085b973.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="nav-bar">
+      <!-- SVG logo -->
+      <svg width="80" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img"
+        aria-labelledby="title">
+        <title>WebWeaver Thread Brackets Logo</title>
+        <defs>
+          <linearGradient id="ww-grad2" x1="0" y1="0" x2="200" y2="60" gradientUnits="userSpaceOnUse">
+            <stop offset="0.2" stop-color="#A640DD" />
+            <stop offset="0.8" stop-color="#66A5EB" />
+          </linearGradient>
+        </defs>
+        <path d="M20 15 Q10 30 20 45" stroke="url(#ww-grad2)" stroke-width="6" fill="none" stroke-linecap="round" />
+        <path d="M180 15 Q190 30 180 45" stroke="url(#ww-grad2)" stroke-width="6" fill="none" stroke-linecap="round" />
+        <path d="M50 30c15-18 35-18 50 0s35 18 50 0" fill="none" stroke="url(#ww-grad2)" stroke-width="6"
+          stroke-linecap="round" />
+        <path d="M50 30c15 18 35 18 50 0s35-18 50 0" fill="none" stroke="url(#ww-grad2)" stroke-width="2"
+          opacity="0.5" />
+      </svg>
+      <div class="logo">
+        <h1>WebWeaver</h1>
+      </div>
+      <div class="toggle-wrapper">
+        <input type="checkbox" id="toggleView">
+        <label for="toggleView" class="toggle-label">
+          <i class="fa-solid fa-laptop-code"></i><span class="toggle-text code-text">Code</span>
+          <span class="toggle-slider"></span>
+          <span class="toggle-text preview-text">Preview </span><i class="fa-solid fa-eye"></i>
+
+        </label>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="main-container">
+      <div class="hero-section">
+        <div class="text">
+          <h1><i class="fa-solid fa-wand-magic-sparkles"></i> Craft miracles</h1>
+          <div>
+            <p>“Where imagination meets reality,</p>
+            <p>sparking dreams that glow and ideas that dazzle.”</p>
+          </div>
+          <textarea id="promptInput" placeholder="Enter your prompt here"></textarea>
+          <div><button id="generateBtn">Generate Code</button></div>
+        </div>
+      </div>
+      <div class="code-preview-section">
+        <div id="codeSection">
+          <div>
+            <div>
+              <p>index.html</p>
+            </div>
+            <div> <button id="fullscreenBtn" title="Full Screen">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <div class="preview-controls">
+          <div id="previewSection" style="display:none;">
+            <iframe id="preview"></iframe>
+          </div>
+        </div>
+      </div>
+  </main>
+
+  <script>
+    console.log("Script loaded");
+
+    let generatedHTML = "";
+    const codeSection = document.getElementById("codeSection");
+    const previewSection = document.getElementById("previewSection");
+    const previewFrame = document.getElementById("preview");
+    const toggleView = document.getElementById("toggleView");
+    const generateBtn = document.getElementById("generateBtn");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+
+
+    // Toggle code/preview view
+    toggleView.addEventListener("change", () => {
+      if (toggleView.checked) {
+        codeSection.style.display = "none";
+        previewSection.style.display = "block";
+        previewFrame.srcdoc = generatedHTML;
+      } else {
+        codeSection.style.display = "block";
+        previewSection.style.display = "none";
+      }
+    });
+
+    // Button animation
+    generateBtn.addEventListener("click", () => {
+      generateBtn.style.transform = "scale(1.2)";
+      generateBtn.style.transition = "transform 0.2s ease";
+      setTimeout(() => generateBtn.style.transform = "scale(1)", 200);
+    });
+
+    // Fetch generated code
+    generateBtn.addEventListener("click", async () => {
+      console.log("Generate button clicked!");
+      const prompt = document.getElementById("promptInput").value;
+
+      try {
+        const res = await fetch("/generate-code", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt })
+        });
+
+        console.log("Response status:", res.status);
+        const data = await res.json();
+
+        if (data.code) {
+          codeSection.textContent = data.code;
+          generatedHTML = data.code;
+        } else {
+          codeSection.textContent = "Error generating code.";
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+      }
+    });
+
+
+    fullscreenBtn.addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        // Enter full screen
+        previewFrame.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+      } else {
+        // Exit full screen
+        document.exitFullscreen();
+      }
+    });
+
+  </script>
+</body>
+
+</html>
