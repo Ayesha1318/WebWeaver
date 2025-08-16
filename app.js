@@ -8,13 +8,15 @@ const userRouter = require('./routes/userRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+
 const rootDir = require('./utils/pathUtil');
-app.use(userRouter);
 
 app.use(express.static(path.join(rootDir,'public')));
+app.use(userRouter);
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index.html"));
+  res.sendFile(path.join(rootDir, "views", "index.html"));
 });
 
 const PORT = 3000;
