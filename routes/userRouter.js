@@ -5,11 +5,11 @@ const rootDir = require('../utils/pathUtil')
 const { generateWebsiteCode } = require('../aiAgent');
 
 userRouter.get("/",(req,res,next)=>{
-  res.sendFile(path.join(rootDir,'views','index.html'));
+  res.sendFile(path.join(rootDir,'public','index.html'));
 })
 
 userRouter.get("/web-builder",(req,res,next)=>{
-  res.sendFile(path.join(rootDir,'views','web-builder.html'))
+  res.sendFile(path.join(rootDir,'public','web-builder.html'))
 })
 
 
