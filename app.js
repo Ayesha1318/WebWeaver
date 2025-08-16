@@ -13,7 +13,9 @@ app.use(userRouter);
 
 app.use(express.static(path.join(rootDir,'public')));
 
-
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "index.html"));
+});
 
 const PORT = 3000;
 app.listen(PORT,()=>{
