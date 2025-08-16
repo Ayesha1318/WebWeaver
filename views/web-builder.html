@@ -32,15 +32,12 @@
       <div class="logo">
         <h1>WebWeaver</h1>
       </div>
-      <div class="toggle-wrapper">
-        <input type="checkbox" id="toggleView">
-        <label for="toggleView" class="toggle-label">
-          <i class="fa-solid fa-laptop-code"></i><span class="toggle-text code-text">Code</span>
-          <span class="toggle-slider"></span>
-          <span class="toggle-text preview-text">Preview </span><i class="fa-solid fa-eye"></i>
-
-        </label>
+      <div class="nav-btn">
+            <ul class="home">
+            <li><a href="/">Home</a></li>
+        </ul>
       </div>
+        
     </nav>
   </header>
 
@@ -53,22 +50,41 @@
             <p>“Where imagination meets reality,</p>
             <p>sparking dreams that glow and ideas that dazzle.”</p>
           </div>
-          <textarea id="promptInput" placeholder="Enter your prompt here"></textarea>
+          <textarea id="promptInput" placeholder="Describe your website idea in detail for better results…"></textarea>
           <div><button id="generateBtn">Generate Code</button></div>
         </div>
       </div>
+
       <div class="code-preview-section">
-        <div id="codeSection">
-          <div>
-            <div>
-              <p>index.html</p>
+
+        <div class="code-preview-wrapper">
+          <div class="top-controls">
+            <div id="indexcode">
+              <h1>index.html</h1>
             </div>
-            <div> <button id="fullscreenBtn" title="Full Screen">
+
+             <div class="toggle-wrapper">
+        <input type="checkbox" id="toggleView">
+        <label for="toggleView" class="toggle-label">
+          <i class="fa-solid fa-laptop-code"></i><span class="toggle-text code-text">Code</span>
+          <span class="toggle-slider"></span>
+          <span class="toggle-text preview-text">Preview </span><i class="fa-solid fa-eye"></i>
+
+        </label>
+      </div>
+
+            <div class="btns">
+              <button class="copy" id="copyBtn" title="copy">
+                <i class="fa-solid fa-copy"></i> Copy
+              </button>
+              <button class="fullscreen" id="fullscreenBtn" title="Full Screen">
                 <i class="fa-solid fa-expand"></i>
               </button>
             </div>
           </div>
+        </div>
 
+        <div id="codeSection">
         </div>
         <div class="preview-controls">
           <div id="previewSection" style="display:none;">
@@ -88,6 +104,7 @@
     const toggleView = document.getElementById("toggleView");
     const generateBtn = document.getElementById("generateBtn");
     const fullscreenBtn = document.getElementById("fullscreenBtn");
+    const copyBtn = document.getElementById("copyBtn");
 
 
     // Toggle code/preview view
@@ -107,6 +124,10 @@
       generateBtn.style.transform = "scale(1.2)";
       generateBtn.style.transition = "transform 0.2s ease";
       setTimeout(() => generateBtn.style.transform = "scale(1)", 200);
+
+      const originalText = generateBtn.textContent;
+      generateBtn.textContent = "Spinning Magic…";
+      generateBtn.disabled = true;
     });
 
     // Fetch generated code
@@ -133,8 +154,26 @@
       } catch (err) {
         console.error("Fetch error:", err);
       }
+      finally {
+        // Always reset button text, even if error occurs
+        generateBtn.textContent = 'Generate Code';
+        generateBtn.disabled = false;
+      }
     });
 
+    copyBtn.addEventListener("click", () => {
+      if (!generatedHTML) return;           // nothing to copy
+      navigator.clipboard.writeText(generatedHTML)
+        .then(() => {
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i> Copy`, 1500);
+        })
+        .catch(err => {
+          console.error("Copy failed:", err);
+          copyBtn.textContent = "Failed!";
+          setTimeout(() => copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i> Copy`, 1500);
+        });
+    });
 
     fullscreenBtn.addEventListener("click", () => {
       if (!document.fullscreenElement) {

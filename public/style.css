@@ -2,20 +2,24 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 body {
-      height: 100vh;
-        margin: 0;
-        background: linear-gradient(90deg, rgb(117, 135, 225) 12.1%, rgba(188,167,205,1) 63.2%);
-        background-size: 200% 200%;
-        transition: background-position 0.1s ease-out;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(117, 135, 225) 12.1%,
+    rgba(188, 167, 205, 1) 63.2%
+  );
+  background-size: 200% 200%;
+  transition: background-position 0.1s ease-out;
 }
 
+
+/*<------------navbar------------>*/
 .nav-bar {
   display: flex;
   background-color: rgba(244, 244, 255, 0.752);
-  /* flex-wrap: wrap; */
   height: 83px;
   width: 100%;
-  /* justify-content: space-evenly; */
   justify-content: space-around;
   align-items: center;
   top: 0px;
@@ -25,7 +29,6 @@ body {
   z-index: 1000;
 }
 .nav-btn ul li {
-  /* background: wheat; */
   display: inline-block;
   list-style: none;
 }
@@ -41,6 +44,7 @@ body {
 }
 
 /* Underline (hidden at first) */
+
 .nav-btn li a::after {
   content: "";
   position: absolute;
@@ -52,27 +56,28 @@ body {
   transition: width 0.6s ease;
 }
 
-/* On hover: text color + underline */
 .nav-btn li a:hover {
   color: rgb(127, 49, 170);
 }
 
+/* On hover: underline */
 .nav-btn li a:hover::after {
   width: 100%;
 }
-/*Logo*/
+
+/*<--------Logo-------->*/
 .logo h1 {
   position: relative;
   background: -webkit-linear-gradient(#192d93, #7b4ba3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text; /* for Firefox */
+  background-clip: text;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 26px;
-  right:380px;
+  right: 380px;
 }
 
-/*nav bar Button */
+/*<------------nav bar Button----------> */
 .nav-btn button {
   padding: 13px;
   border-radius: 15px;
@@ -98,11 +103,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-    100.5deg,
-    #632783 21.2%,
-    #325579 76.1%
-  );
+  background-image: linear-gradient(100.5deg, #632783 21.2%, #325579 76.1%);
   opacity: 0;
   transition: opacity 0.6s ease-in-out;
   z-index: -1;
@@ -112,36 +113,36 @@ body {
   opacity: 1;
 }
 
-
-.hero-section{
+/*<-----------Main section------------>*/
+.hero-section {
   display: flex;
   position: relative;
-   padding-top: 150px;
+  padding-top: 150px;
   flex-direction: column;
   margin-left: 70px;
 }
 
-.first-heading h1{
- font-size: 45px;
-    background: -webkit-linear-gradient(#192d93, #7b4ba3);
+.first-heading h1 {
+  font-size: 45px;
+  background: -webkit-linear-gradient(#192d93, #7b4ba3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 2px;
 }
-.second-heading h1{
+.second-heading h1 {
   color: white;
-   font-size: 45px;
-   margin-top: 9px;
+  font-size: 45px;
+  margin-top: 9px;
 }
-.hero-section h2{
- font-size: 39px;
+.hero-section h2 {
+  font-size: 39px;
   background: -webkit-linear-gradient(#321b84, #66348d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 15px;
 }
 
-.hero-section p{
+.hero-section p {
   font-size: 22px;
   color: white;
   margin-top: 4px;
@@ -173,11 +174,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-    100.5deg,
-    #632783 21.2%,
-    #325579 76.1%
-  );
+  background-image: linear-gradient(100.5deg, #632783 21.2%, #325579 76.1%);
   opacity: 0;
   transition: opacity 0.6s ease-in-out;
   z-index: -1;
@@ -191,7 +188,7 @@ body {
   opacity: 1;
 }
 
-.website-img{
+.website-img {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -200,20 +197,21 @@ body {
   height: 350px;
 }
 
-.website-img img{
-    height: 100%;
+.website-img img {
+  height: 100%;
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 0 25px rgba(166, 64, 221, 0.8);
   transition: box-shadow 0.3s ease-in-out;
 }
 
-
 .website-img img:hover {
   box-shadow: 0 0 40px rgba(166, 64, 221, 1);
 }
 
-#feature{
+
+/* <----------Features part-----------> */
+#feature {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -221,30 +219,29 @@ body {
   flex-direction: column;
   padding-top: 23vh;
 }
-#feature .first-title h1{
+#feature .first-title h1 {
   color: white;
-   font-size: 39px;
-   margin-top: 9px;
-   margin-bottom: 1px;
- }
-#feature .second-title h1{
+  font-size: 39px;
+  margin-top: 9px;
+  margin-bottom: 1px;
+}
+#feature .second-title h1 {
   background: -webkit-linear-gradient(#192d93, #7b4ba3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-   font-size: 45px;
-   margin-top: 2px;
-   margin-bottom: 14px;
- }
-#feature p{
- color: white;
-   font-size: 20px;
-   margin-top: 1px;
- }
-
+  font-size: 45px;
+  margin-top: 2px;
+  margin-bottom: 14px;
+}
+#feature p {
+  color: white;
+  font-size: 20px;
+  margin-top: 1px;
+}
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);;
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
   max-width: 1200px;
   margin: auto;
@@ -276,6 +273,7 @@ body {
   box-shadow: 0 0 20px rgba(166, 64, 221, 0.5);
 }
 
+/*<-----------Cta Section------------>*/
 .cta-wrapper {
   display: flex;
   justify-content: center;
@@ -296,7 +294,7 @@ body {
 .cta-card h2 {
   font-size: 28px;
   /* color: white; */
-   background: -webkit-linear-gradient(#192d93, #7b4ba3);
+  background: -webkit-linear-gradient(#192d93, #7b4ba3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -334,11 +332,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-    100.5deg,
-    #632783 21.2%,
-    #325579 76.1%
-  );
+  background-image: linear-gradient(100.5deg, #632783 21.2%, #325579 76.1%);
   opacity: 0;
   transition: opacity 0.6s ease-in-out;
   z-index: -1;
@@ -351,6 +345,8 @@ body {
 .cta-card button:hover::after {
   opacity: 1;
 }
+
+/*<-----------Footer section------------>*/
 
 .footer {
   background: rgba(255, 255, 255, 0.05);
